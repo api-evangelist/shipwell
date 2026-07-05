@@ -1,0 +1,90 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Shipwell
+providerId: shipwell
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Transportation Management
+- TMS
+- Freight
+- Logistics
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Shipwell spend. Shipwell is an enterprise transportation
+  management platform billed under a negotiated annual (or multi-year) contract
+  scoped to freight volume, activated modules, and integrations - not a public,
+  usage-metered API product. The API and webhooks are included with the platform
+  subscription. The dominant cost drivers are the platform subscription and any
+  professional-services or integration work, rather than per-request API charges.
+notes: >-
+  Shipwell does not publish per-unit API rates; there is no public metered API
+  line item to reconcile. Cost mapping below is structural - align meters to your
+  Shipwell contract's volume and module dimensions during reconciliation.
+sources:
+- https://www.shipwell.com/
+- https://www.shipwell.com/blog/tms-software-price
+- https://docs.shipwell.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Shipwell
+serviceCategory: Logistics and Supply Chain
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Shipwell TMS
+  ServiceCategory: Logistics and Supply Chain
+  ProviderName: Shipwell
+  PublisherName: Shipwell
+  InvoiceIssuerName: Shipwell
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: platform_subscription
+  description: Annual platform subscription scoped to freight volume and activated modules.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+  - modules
+- name: freight_volume
+  description: Freight volume (shipments / loads) executed through the platform, a common contract sizing dimension.
+  unit: shipments
+  aggregation: sum
+  dimensions:
+  - account
+  - mode
+- name: integrations
+  description: Custom integrations and professional-services engagements.
+  unit: engagements
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track freight volume and executed shipments by mode to understand what drives contract sizing.
+- name: Allocation
+  description: Map shipments and modules to internal business units and freight lanes for cost allocation.
+- name: Optimization
+  description: Consolidate orders onto shipments, automate tendering and freight audit, and use quoting to select cost-effective carriers.
+- name: Accountability
+  description: Assign owners for module usage and integration scope; review annual contract sizing against actual freight volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

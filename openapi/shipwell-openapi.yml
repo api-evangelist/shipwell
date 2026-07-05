@@ -1,0 +1,766 @@
+openapi: 3.0.3
+info:
+  title: Shipwell v2 Core API
+  description: >-
+    Partial, honestly-modeled OpenAPI description of the Shipwell transportation
+    management system (TMS) API. Shipwell is an AI-powered freight execution
+    platform; its public documentation and full API reference live at
+    https://docs.shipwell.com/ but the complete platform and API are enterprise
+    and contract-gated, so exact request and response schemas are best confirmed
+    against the live reference and an authenticated account.
+
+
+    Endpoints marked "confirmed" below appear directly in Shipwell's public docs
+    (shipment create/list/get, shipment notes, carrier assignments, tenders, and
+    the events list). Endpoints marked "modeled" are honestly inferred from the
+    documented resource groups (quoting, spot-negotiations, carrier-bids,
+    carriers, carrier-relationships, orders, purchase-orders, webhooks) and are
+    included to represent the shape of each logical API - verify them before use.
+
+
+    Base URLs. Most of the v2 Core API is served under
+    https://api.shipwell.com/v2 with a fully separate sandbox at
+    https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the
+    host root without the /v2 prefix (for example https://api.shipwell.com/orders).
+    Requests are authenticated with company-scoped API keys passed in the
+    Authorization header (the docs call this the AuthToken scheme). Production and
+    sandbox use separate keys, and objects created in one environment cannot be
+    manipulated from the other.
+  version: '2.0'
+  contact:
+    name: Shipwell
+    url: https://docs.shipwell.com/
+servers:
+  - url: https://api.shipwell.com/v2
+    description: Production (v2 Core API)
+  - url: https://sandbox-api.shipwell.com/v2
+    description: Sandbox (v2 Core API)
+  - url: https://api.shipwell.com
+    description: Production host root (Orders API, served without the /v2 prefix)
+security:
+  - authToken: []
+tags:
+  - name: Shipments
+    description: Multimodal freight shipments - the central platform resource. (confirmed)
+  - name: Quoting
+    description: Rates, quotes, RFQs, spot negotiations, and carrier bids. (modeled)
+  - name: Carriers
+    description: Carriers, carrier relationships, and carrier assignments. (partly confirmed)
+  - name: Orders
+    description: Orders and purchase orders consolidated onto shipments. (modeled)
+  - name: Events and Webhooks
+    description: Real-time supply-chain events and webhook subscriptions. (partly confirmed)
+paths:
+  /shipments/:
+    get:
+      operationId: listShipments
+      tags:
+        - Shipments
+      summary: List shipments
+      description: Returns a paginated list of shipments visible to the authenticated company. (confirmed)
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A paginated list of shipments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createShipment
+      tags:
+        - Shipments
+      summary: Create a shipment
+      description: >-
+        Creates a shipment. Minimum fields include metadata, mode, equipment_type,
+        service_level, stops (at least one pickup and one dropoff), and line_items.
+        (confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentInput'
+      responses:
+        '201':
+          description: The created shipment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /shipments/{shipmentId}/:
+    parameters:
+      - $ref: '#/components/parameters/ShipmentId'
+    get:
+      operationId: getShipment
+      tags:
+        - Shipments
+      summary: Retrieve a shipment
+      description: Retrieves a single shipment by its ID. (confirmed)
+      responses:
+        '200':
+          description: The requested shipment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateShipment
+      tags:
+        - Shipments
+      summary: Update a shipment
+      description: Updates an existing shipment. (confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentInput'
+      responses:
+        '200':
+          description: The updated shipment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /shipments/{shipmentId}/notes/:
+    parameters:
+      - $ref: '#/components/parameters/ShipmentId'
+    get:
+      operationId: listShipmentNotes
+      tags:
+        - Shipments
+      summary: List notes for a shipment or shipment quote
+      description: Lists the notes attached to a shipment or shipment quote. (confirmed)
+      responses:
+        '200':
+          description: A list of shipment notes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShipmentNote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createShipmentNote
+      tags:
+        - Shipments
+      summary: Create a shipment note
+      description: Adds a note to a shipment. (confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentNote'
+      responses:
+        '201':
+          description: The created shipment note.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentNote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /shipments/{shipmentId}/carrier-assignments/:
+    parameters:
+      - $ref: '#/components/parameters/ShipmentId'
+    post:
+      operationId: createCarrierAssignment
+      tags:
+        - Carriers
+      summary: Create a new carrier assignment
+      description: Assigns a carrier to a shipment. (confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierAssignment'
+      responses:
+        '201':
+          description: The created carrier assignment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierAssignment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /shipments/tenders/{tenderId}/:
+    parameters:
+      - name: tenderId
+        in: path
+        required: true
+        description: The ID of the tender.
+        schema:
+          type: string
+    put:
+      operationId: updateTender
+      tags:
+        - Shipments
+      summary: Update a tendered shipment
+      description: >-
+        Updates a tendered shipment to a Shipwell company. Only valid for
+        shipments created by posting to this endpoint. (confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The updated tender.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /quotes/:
+    post:
+      operationId: createQuote
+      tags:
+        - Quoting
+      summary: Request a quote / rates
+      description: >-
+        Requests rates and quotes for a shipment (an RFQ). Modeled from the
+        documented quoting resource group - confirm the exact path, request, and
+        response schema against the live reference. (modeled)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '201':
+          description: The created quote / rate request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /quotes/{quoteId}/:
+    parameters:
+      - name: quoteId
+        in: path
+        required: true
+        description: The ID of the quote.
+        schema:
+          type: string
+    get:
+      operationId: getQuote
+      tags:
+        - Quoting
+      summary: Retrieve a quote
+      description: Retrieves a quote and its returned rates. (modeled)
+      responses:
+        '200':
+          description: The requested quote.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /carriers/:
+    get:
+      operationId: listCarriers
+      tags:
+        - Carriers
+      summary: List carriers
+      description: >-
+        Lists carriers in your network, including compliance and performance
+        master data. Modeled from the documented carriers resource group. (modeled)
+      responses:
+        '200':
+          description: A list of carriers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carrier'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /carriers/{carrierId}/:
+    parameters:
+      - name: carrierId
+        in: path
+        required: true
+        description: The ID of the carrier.
+        schema:
+          type: string
+    get:
+      operationId: getCarrier
+      tags:
+        - Carriers
+      summary: Retrieve a carrier
+      description: Retrieves a single carrier by its ID. (modeled)
+      responses:
+        '200':
+          description: The requested carrier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carrier'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /orders:
+    servers:
+      - url: https://api.shipwell.com
+        description: Orders API served under the host root (no /v2 prefix).
+    get:
+      operationId: listOrders
+      tags:
+        - Orders
+      summary: List orders
+      description: >-
+        Lists orders. The newer Orders API is served under the host root without
+        the /v2 prefix (https://api.shipwell.com/orders). Modeled from the
+        documented orders resource group. (modeled)
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrder
+      tags:
+        - Orders
+      summary: Create an order
+      description: Creates an order that can later be consolidated onto a shipment. (modeled)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /orders/{orderId}:
+    servers:
+      - url: https://api.shipwell.com
+        description: Orders API served under the host root (no /v2 prefix).
+    parameters:
+      - name: orderId
+        in: path
+        required: true
+        description: The ID of the order.
+        schema:
+          type: string
+    get:
+      operationId: getOrder
+      tags:
+        - Orders
+      summary: Retrieve an order
+      description: Retrieves a single order by its ID. (modeled)
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/:
+    get:
+      operationId: listEvents
+      tags:
+        - Events and Webhooks
+      summary: Retrieve a list of events
+      description: >-
+        Retrieves supply-chain events, including shipment tracking timeline
+        updates. (confirmed)
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/event-names-by-version/:
+    get:
+      operationId: listEventNames
+      tags:
+        - Events and Webhooks
+      summary: List available event names by version
+      description: >-
+        Returns the up-to-date list of event names available for webhook
+        subscriptions, keyed by version. (confirmed)
+      responses:
+        '200':
+          description: A map of event names by version.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhooks/:
+    get:
+      operationId: listWebhooks
+      tags:
+        - Events and Webhooks
+      summary: List webhook subscriptions
+      description: Lists the webhook subscriptions configured for your company. (modeled)
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWebhook
+      tags:
+        - Events and Webhooks
+      summary: Create a webhook subscription
+      description: >-
+        Creates a webhook subscription. Shipwell delivers matching events by HTTP
+        POST to the configured endpoint URL. (partly confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Company-scoped API key passed in the Authorization header (the docs refer
+        to this as the AuthToken scheme). Production and sandbox use separate
+        keys. Keys can be permission-restricted.
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Address:
+      type: object
+      properties:
+        address_1:
+          type: string
+        city:
+          type: string
+        state_province:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+    Stop:
+      type: object
+      properties:
+        ordinal_index:
+          type: integer
+        is_pickup:
+          type: boolean
+        is_dropoff:
+          type: boolean
+        planned_date:
+          type: string
+          format: date
+        planned_time_window_start:
+          type: string
+        planned_time_window_end:
+          type: string
+        location:
+          type: object
+          properties:
+            location_name:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
+    LineItem:
+      type: object
+      properties:
+        description:
+          type: string
+        total_packages:
+          type: string
+        package_weight:
+          type: string
+        weight_unit:
+          type: string
+    ShipmentInput:
+      type: object
+      required:
+        - stops
+        - line_items
+      properties:
+        metadata:
+          type: object
+          additionalProperties: true
+        mode:
+          type: object
+          additionalProperties: true
+        equipment_type:
+          type: object
+          additionalProperties: true
+        service_level:
+          type: object
+          additionalProperties: true
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stop'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    Shipment:
+      allOf:
+        - $ref: '#/components/schemas/ShipmentInput'
+        - type: object
+          properties:
+            id:
+              type: string
+            reference_id:
+              type: string
+            state:
+              type: string
+    ShipmentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        page:
+          type: integer
+        total_count:
+          type: integer
+    ShipmentNote:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        additional_data:
+          type: object
+          additionalProperties: true
+    CarrierAssignment:
+      type: object
+      properties:
+        id:
+          type: string
+        carrier:
+          type: string
+        rate:
+          type: number
+        currency:
+          type: string
+    QuoteRequest:
+      type: object
+      properties:
+        shipment:
+          type: string
+          description: ID of the shipment to rate, or an inline shipment payload.
+        mode:
+          type: array
+          items:
+            type: string
+        equipment_type:
+          type: array
+          items:
+            type: string
+    Quote:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              carrier:
+                type: string
+              total:
+                type: number
+              currency:
+                type: string
+              transit_days:
+                type: integer
+    Carrier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        scac:
+          type: string
+        dot_number:
+          type: string
+        mc_number:
+          type: string
+        compliance_status:
+          type: string
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        order_number:
+          type: string
+        status:
+          type: string
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        event_name:
+          type: string
+        version:
+          type: string
+        occurred_at:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
+    Webhook:
+      type: object
+      required:
+        - url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        event_names:
+          type: array
+          items:
+            type: string
+        is_active:
+          type: boolean

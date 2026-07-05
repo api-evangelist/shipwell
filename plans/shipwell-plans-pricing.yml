@@ -1,0 +1,106 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Shipwell
+providerId: shipwell
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Transportation Management
+- TMS
+- Freight
+- Logistics
+- Plans
+description: >-
+  Shipwell does not publish self-serve, public pricing. It is sold as an
+  enterprise transportation management platform with pricing scoped to a
+  customer's freight volume, modes, modules (TMS, visibility, procurement,
+  freight audit and pay, dock scheduling), and integration needs, quoted through
+  a sales-led demo and contract process. Third-party listings suggest entry
+  arrangements starting around one thousand USD per month, but there is no
+  documented public tier - treat all figures as unverified. API access is
+  included with the platform contract rather than sold as a standalone metered
+  API product.
+notes: >-
+  No public pricing page enumerates named tiers. The figures below are structural
+  placeholders, not confirmed rate cards; verify against a Shipwell quote during
+  reconciliation. A sandbox environment is available for development and testing.
+sources:
+- https://www.shipwell.com/
+- https://www.shipwell.com/tms-platform
+- https://www.shipwell.com/blog/tms-software-price
+- https://docs.shipwell.com/
+plans:
+- id: shipwell-demo
+  name: Request a Demo
+  type: free
+  description: >-
+    Sales-led evaluation entry point. Prospective customers request a demo to
+    scope modes, modules, and volume before a contract quote. A separate sandbox
+    environment supports development and testing.
+  entries:
+  - label: Guided Demo and Sandbox
+    name: demo_sandbox
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Platform Demo
+  - name: Sandbox Environment
+  - name: Solution Scoping
+- id: shipwell-platform
+  name: Shipwell TMS Platform
+  type: enterprise
+  description: >-
+    The core AI-powered transportation management platform - plan, rate, tender,
+    book, track, and settle multimodal freight (parcel, LTL, truckload,
+    intermodal, rail, ocean) with real-time visibility and API access. Priced by
+    freight volume, modules, and integrations under an annual contract.
+  entries:
+  - label: Platform Subscription
+    name: platform_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: custom (quote-based; third-party listings cite entry arrangements from ~1000 USD per month, unverified)
+    userMultiplied: false
+  elements:
+  - name: Transportation Management
+  - name: Real-Time Visibility and Tracking
+  - name: Quoting and Procurement
+  - name: Freight Audit and Pay
+  - name: API and Webhooks Access
+- id: shipwell-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom enterprise agreement for high-volume shippers and brokers - negotiated
+    module bundles, dedicated integrations, SLAs, security review, and support.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Integrations
+  - name: SLAs and Support
+  - name: Security Review
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

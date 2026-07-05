@@ -1,0 +1,116 @@
+aid: shipwell
+name: Shipwell
+review:
+  question: Does Shipwell expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Shipwell's public API is request/response
+    REST over HTTPS (the v2 Core API plus the newer Orders API). Its real-time
+    surface - the Events and Webhooks API - delivers events by server-initiated
+    HTTP POST to a subscriber's endpoint URL. There is no server-push transport
+    (WebSocket or SSE) on Shipwell's own public API to model. A webhook
+    integration could be described with AsyncAPI, but the callback payloads are
+    account- and version-specific and best consumed from the live event-names
+    endpoint, so no AsyncAPI document was created.
+findings:
+  summary: |
+    Shipwell does not publish a documented public WebSocket API. Shipwell is an
+    AI-powered transportation management system (TMS). Its public developer
+    surface (docs.shipwell.com) is REST over HTTPS: the v2 Core API at
+    https://api.shipwell.com/v2 (with a fully separate sandbox at
+    https://sandbox-api.shipwell.com/v2), plus a newer Orders API served under
+    the host root without the /v2 prefix (https://api.shipwell.com/orders).
+    Requests are authenticated with company-scoped API keys passed in the
+    Authorization header (the docs call this the AuthToken scheme). Real-time
+    supply-chain updates - shipment tracking timeline events such as in_transit
+    and delivered - are delivered through the Events and Webhooks API, which
+    sends events by HTTP POST to a subscriber-configured endpoint. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere on Shipwell's own API.
+  openSource: |
+    Shipwell is a proprietary, enterprise SaaS platform. The core platform and
+    full API are contract- and access-gated (sales-led demo; separate production
+    and sandbox environments; company-scoped API keys). No open-source server
+    component is published for the platform itself.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.shipwell.com/v2
+      documented: true
+      note: v2 Core API (shipments, quoting, carriers, purchase orders, tenders, documents, events). Sandbox at https://sandbox-api.shipwell.com/v2.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.shipwell.com
+      documented: true
+      note: Newer Orders API served under the host root without the /v2 prefix (e.g. /orders).
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Events and Webhooks API delivers events by HTTP POST to a subscriber endpoint. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Shipwell's v2 Core API, Orders API, or events/webhooks reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.shipwell.com/v2/shipments/
+    - POST   https://api.shipwell.com/v2/shipments/
+    - GET    https://api.shipwell.com/v2/shipments/{shipmentId}
+    - PUT    https://api.shipwell.com/v2/shipments/{shipmentId}
+    - GET    https://api.shipwell.com/v2/shipments/{shipmentId}/notes/
+    - PUT    https://api.shipwell.com/v2/shipments/{shipmentId}/notes/{shipmentNoteId}/
+    - POST   https://api.shipwell.com/v2/shipments/{shipmentId}/carrier-assignments/
+    - PUT    https://api.shipwell.com/v2/shipments/tenders/{tenderId}/
+    - GET    https://api.shipwell.com/v2/events/
+  endpointsModeled:
+    - POST   https://api.shipwell.com/v2/quotes/
+    - GET    https://api.shipwell.com/v2/quotes/{quoteId}/
+    - GET    https://api.shipwell.com/v2/carriers/
+    - GET    https://api.shipwell.com/v2/carriers/{carrierId}/
+    - GET    https://api.shipwell.com/orders
+    - POST   https://api.shipwell.com/orders
+    - GET    https://api.shipwell.com/orders/{orderId}
+    - GET    https://api.shipwell.com/v2/events/event-names-by-version/
+    - GET    https://api.shipwell.com/v2/webhooks/
+    - POST   https://api.shipwell.com/v2/webhooks/
+  endpointsModeledNote: |
+    Confirmed endpoints appear directly in Shipwell's public docs. Modeled
+    endpoints are honestly inferred from documented resource groups (quoting,
+    carriers, orders, events/webhooks). The events/event-names-by-version and
+    webhook-create paths are referenced in the docs but their exact request and
+    response schemas were not fully captured; the quoting, carriers, and orders
+    endpoint shapes are structural and should be verified against the live
+    reference and an authenticated account before use.
+sources:
+  - url: https://docs.shipwell.com/
+    type: Documentation
+    note: Shipwell developer portal.
+  - url: https://docs.shipwell.com/openapi_pages/backend-core/overview/
+    type: APIReference
+    note: v2 Core API overview - lists resource groups (shipments, quoting, carriers, orders, tenders, documents, events and webhooks, and more).
+  - url: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
+    type: Documentation
+    note: Confirms POST /v2/shipments/, list, and get; shows the Authorization header and sandbox host.
+  - url: https://docs.shipwell.com/docs/api-concepts/keys/
+    type: Documentation
+    note: API keys, permissions, production vs sandbox (sandbox mocks third-party integrations).
+  - url: https://docs.shipwell.com/docs/get-connected/environments/
+    type: Documentation
+    note: Confirms base URLs - https://api.shipwell.com/v2 (prod), https://sandbox-api.shipwell.com/v2 (sandbox), and Orders under the host root without /v2.
+  - url: https://docs.shipwell.com/docs/webhook/what-are-webhooks/
+    type: Documentation
+    note: Webhooks deliver events by HTTP POST; no WebSocket. Event names retrieved via /events/event-names-by-version/.
+  - url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
+    type: APIReference
+    note: Events and Webhooks API; GET /events/ with the AuthToken security scheme.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Shipwell's public API is
+    request/response REST (v2 Core API plus the Orders API) with real-time
+    updates delivered via server-to-endpoint webhooks (HTTP POST). No AsyncAPI
+    document was created because there is no server-push transport on Shipwell's
+    own API to model.

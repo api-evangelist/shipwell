@@ -1,0 +1,197 @@
+{
+  "info": {
+    "name": "Shipwell v2 Core API",
+    "description": "Partial, honestly-modeled Postman collection for the Shipwell transportation management system (TMS) API. Docs: https://docs.shipwell.com/. Production base URL https://api.shipwell.com/v2 (the Orders API is served under https://api.shipwell.com without the /v2 prefix), sandbox https://sandbox-api.shipwell.com/v2. Requests are authenticated with a company-scoped API key in the Authorization header. Endpoints noted (confirmed) appear in Shipwell's public docs; (modeled) endpoints are inferred from the documented resource groups - verify before use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization", "type": "string" },
+      { "key": "value", "value": "{{authToken}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.shipwell.com/v2", "type": "string" },
+    { "key": "ordersBaseUrl", "value": "https://api.shipwell.com", "type": "string" },
+    { "key": "authToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Shipments",
+      "item": [
+        {
+          "name": "List shipments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/shipments/", "host": ["{{baseUrl}}"], "path": ["shipments", ""] },
+            "description": "Returns a paginated list of shipments visible to the authenticated company. (confirmed)"
+          }
+        },
+        {
+          "name": "Create a shipment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"metadata\": {\"open\": true},\n  \"mode\": {\"code\": \"FTL\"},\n  \"equipment_type\": {\"machine_readable\": \"DRY_VAN\"},\n  \"stops\": [],\n  \"line_items\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/shipments/", "host": ["{{baseUrl}}"], "path": ["shipments", ""] },
+            "description": "Creates a shipment with metadata, mode, equipment_type, service_level, stops, and line_items. (confirmed)"
+          }
+        },
+        {
+          "name": "Retrieve a shipment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/shipments/:shipmentId/", "host": ["{{baseUrl}}"], "path": ["shipments", ":shipmentId", ""] },
+            "description": "Retrieves a single shipment by its ID. (confirmed)"
+          }
+        },
+        {
+          "name": "Update a shipment",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/shipments/:shipmentId/", "host": ["{{baseUrl}}"], "path": ["shipments", ":shipmentId", ""] },
+            "description": "Updates an existing shipment. (confirmed)"
+          }
+        },
+        {
+          "name": "List notes for a shipment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/shipments/:shipmentId/notes/", "host": ["{{baseUrl}}"], "path": ["shipments", ":shipmentId", "notes", ""] },
+            "description": "Lists the notes attached to a shipment or shipment quote. (confirmed)"
+          }
+        },
+        {
+          "name": "Create a carrier assignment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/shipments/:shipmentId/carrier-assignments/", "host": ["{{baseUrl}}"], "path": ["shipments", ":shipmentId", "carrier-assignments", ""] },
+            "description": "Assigns a carrier to a shipment. (confirmed)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quoting",
+      "item": [
+        {
+          "name": "Request a quote / rates",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/quotes/", "host": ["{{baseUrl}}"], "path": ["quotes", ""] },
+            "description": "Requests rates and quotes for a shipment (an RFQ). Modeled - confirm the exact path. (modeled)"
+          }
+        },
+        {
+          "name": "Retrieve a quote",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/quotes/:quoteId/", "host": ["{{baseUrl}}"], "path": ["quotes", ":quoteId", ""] },
+            "description": "Retrieves a quote and its returned rates. (modeled)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carriers",
+      "item": [
+        {
+          "name": "List carriers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/carriers/", "host": ["{{baseUrl}}"], "path": ["carriers", ""] },
+            "description": "Lists carriers in your network, with compliance and performance master data. (modeled)"
+          }
+        },
+        {
+          "name": "Retrieve a carrier",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/carriers/:carrierId/", "host": ["{{baseUrl}}"], "path": ["carriers", ":carrierId", ""] },
+            "description": "Retrieves a single carrier by its ID. (modeled)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "List orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{ordersBaseUrl}}/orders", "host": ["{{ordersBaseUrl}}"], "path": ["orders"] },
+            "description": "Lists orders. The Orders API is served under the host root without the /v2 prefix. (modeled)"
+          }
+        },
+        {
+          "name": "Create an order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{ordersBaseUrl}}/orders", "host": ["{{ordersBaseUrl}}"], "path": ["orders"] },
+            "description": "Creates an order that can later be consolidated onto a shipment. (modeled)"
+          }
+        },
+        {
+          "name": "Retrieve an order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{ordersBaseUrl}}/orders/:orderId", "host": ["{{ordersBaseUrl}}"], "path": ["orders", ":orderId"] },
+            "description": "Retrieves a single order by its ID. (modeled)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events and Webhooks",
+      "item": [
+        {
+          "name": "Retrieve a list of events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/", "host": ["{{baseUrl}}"], "path": ["events", ""] },
+            "description": "Retrieves supply-chain events, including shipment tracking timeline updates. (confirmed)"
+          }
+        },
+        {
+          "name": "List event names by version",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/event-names-by-version/", "host": ["{{baseUrl}}"], "path": ["events", "event-names-by-version", ""] },
+            "description": "Returns the up-to-date list of event names available for webhook subscriptions. (confirmed)"
+          }
+        },
+        {
+          "name": "Create a webhook subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://example.com/webhook\",\n  \"event_names\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/webhooks/", "host": ["{{baseUrl}}"], "path": ["webhooks", ""] },
+            "description": "Creates a webhook subscription; Shipwell delivers matching events by HTTP POST. (partly confirmed)"
+          }
+        }
+      ]
+    }
+  ]
+}

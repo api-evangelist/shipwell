@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Shipwell
+providerId: shipwell
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Transportation Management
+- TMS
+- Freight
+- Logistics
+- Rate Limiting
+- Quotas
+description: >-
+  Shipwell does not publish fixed numeric rate limits in its public developer
+  documentation. Access is company-scoped by API key, and usage is governed by
+  the platform contract rather than a documented per-minute request cap. Clients
+  should treat the API as rate-limited in principle - handle HTTP 429 responses
+  with exponential backoff and honor any Retry-After header - and confirm exact
+  limits with Shipwell for a given account. A fully separate sandbox environment
+  exists for development and testing, where external integrations return mocked
+  responses.
+notes: >-
+  No numeric per-account or per-endpoint limits are documented as of the review
+  date. The 429 code below is the conventional throttling response and is assumed,
+  not documented. Verify concrete limits with Shipwell during reconciliation.
+sources:
+- https://docs.shipwell.com/
+- https://docs.shipwell.com/docs/api-concepts/keys/
+- https://docs.shipwell.com/docs/get-connected/environments/
+responseCodes:
+  throttled: 429
+limits:
+- name: Core API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the v2 Core API. API keys are company-scoped.
+- name: Events and Webhooks
+  scope: account
+  metric: deliveries
+  limit: not published
+  notes: Webhook deliveries are server-to-endpoint HTTP POST calls; no documented delivery-rate cap.
+- name: Sandbox Usage
+  scope: account
+  metric: requests
+  limit: not published
+  notes: Sandbox is separate from production and mocks third-party integrations; limits not documented.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any 429 response.
+- name: Idempotency and Environments
+  description: Production and sandbox are fully separate; objects created in one environment cannot be manipulated from the other.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
