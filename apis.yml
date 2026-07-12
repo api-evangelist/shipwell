@@ -156,6 +156,10 @@ apis:
     that Shipwell delivers by HTTP POST to your endpoint. Delivery is
     server-to-endpoint webhooks over HTTPS, not a WebSocket stream.
 common:
+- type: DomainSecurity
+  url: security/shipwell-domain-security.yml
+- type: Authentication
+  url: authentication/shipwell-authentication.yml
 - type: Website
   url: https://www.shipwell.com/
 - type: LinkedIn

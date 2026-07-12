@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shipwell-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: authToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Company-scoped API key passed in the Authorization header (the docs refer to
+    this as the AuthToken scheme). Production and sandbox use separate keys. Keys can be permission-restricted.
+  sources:
+  - openapi/shipwell-openapi.yml
