@@ -156,6 +156,8 @@ apis:
     that Shipwell delivers by HTTP POST to your endpoint. Delivery is
     server-to-endpoint webhooks over HTTPS, not a WebSocket stream.
 common:
+- type: AgenticAccess
+  url: agentic-access/shipwell-agentic-access.yml
 - type: DomainSecurity
   url: security/shipwell-domain-security.yml
 - type: Authentication
