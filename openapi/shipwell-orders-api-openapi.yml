@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Shipwell v2 Core Carriers Orders API
+  description: 'Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.
+
+
+    Endpoints marked "confirmed" below appear directly in Shipwell''s public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked "modeled" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.
+
+
+    Base URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.'
+  version: '2.0'
+  contact:
+    name: Shipwell
+    url: https://docs.shipwell.com/
+servers:
+- url: https://api.shipwell.com/v2
+  description: Production (v2 Core API)
+- url: https://sandbox-api.shipwell.com/v2
+  description: Sandbox (v2 Core API)
+- url: https://api.shipwell.com
+  description: Production host root (Orders API, served without the /v2 prefix)
+security:
+- authToken: []
+tags:
+- name: Orders
+  description: Orders and purchase orders consolidated onto shipments. (modeled)
+paths:
+  /orders:
+    servers:
+    - url: https://api.shipwell.com
+      description: Orders API served under the host root (no /v2 prefix).
+    get:
+      operationId: listOrders
+      tags:
+      - Orders
+      summary: List orders
+      description: Lists orders. The newer Orders API is served under the host root without the /v2 prefix (https://api.shipwell.com/orders). Modeled from the documented orders resource group. (modeled)
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrder
+      tags:
+      - Orders
+      summary: Create an order
+      description: Creates an order that can later be consolidated onto a shipment. (modeled)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /orders/{orderId}:
+    servers:
+    - url: https://api.shipwell.com
+      description: Orders API served under the host root (no /v2 prefix).
+    parameters:
+    - name: orderId
+      in: path
+      required: true
+      description: The ID of the order.
+      schema:
+        type: string
+    get:
+      operationId: getOrder
+      tags:
+      - Orders
+      summary: Retrieve an order
+      description: Retrieves a single order by its ID. (modeled)
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        order_number:
+          type: string
+        status:
+          type: string
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+    LineItem:
+      type: object
+      properties:
+        description:
+          type: string
+        total_packages:
+          type: string
+        package_weight:
+          type: string
+        weight_unit:
+          type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Company-scoped API key passed in the Authorization header (the docs refer to this as the AuthToken scheme). Production and sandbox use separate keys. Keys can be permission-restricted.

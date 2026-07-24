@@ -1,0 +1,171 @@
+openapi: 3.0.3
+info:
+  title: Shipwell v2 Core Carriers Events and Webhooks API
+  description: 'Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.
+
+
+    Endpoints marked "confirmed" below appear directly in Shipwell''s public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked "modeled" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.
+
+
+    Base URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.'
+  version: '2.0'
+  contact:
+    name: Shipwell
+    url: https://docs.shipwell.com/
+servers:
+- url: https://api.shipwell.com/v2
+  description: Production (v2 Core API)
+- url: https://sandbox-api.shipwell.com/v2
+  description: Sandbox (v2 Core API)
+- url: https://api.shipwell.com
+  description: Production host root (Orders API, served without the /v2 prefix)
+security:
+- authToken: []
+tags:
+- name: Events and Webhooks
+  description: Real-time supply-chain events and webhook subscriptions. (partly confirmed)
+paths:
+  /events/:
+    get:
+      operationId: listEvents
+      tags:
+      - Events and Webhooks
+      summary: Retrieve a list of events
+      description: Retrieves supply-chain events, including shipment tracking timeline updates. (confirmed)
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/event-names-by-version/:
+    get:
+      operationId: listEventNames
+      tags:
+      - Events and Webhooks
+      summary: List available event names by version
+      description: Returns the up-to-date list of event names available for webhook subscriptions, keyed by version. (confirmed)
+      responses:
+        '200':
+          description: A map of event names by version.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhooks/:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Events and Webhooks
+      summary: List webhook subscriptions
+      description: Lists the webhook subscriptions configured for your company. (modeled)
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWebhook
+      tags:
+      - Events and Webhooks
+      summary: Create a webhook subscription
+      description: Creates a webhook subscription. Shipwell delivers matching events by HTTP POST to the configured endpoint URL. (partly confirmed)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '201':
+          description: The created webhook subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        event_name:
+          type: string
+        version:
+          type: string
+        occurred_at:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
+    Webhook:
+      type: object
+      required:
+      - url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        event_names:
+          type: array
+          items:
+            type: string
+        is_active:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Company-scoped API key passed in the Authorization header (the docs refer to this as the AuthToken scheme). Production and sandbox use separate keys. Keys can be permission-restricted.

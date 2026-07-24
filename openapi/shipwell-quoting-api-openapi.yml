@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: Shipwell v2 Core Carriers Quoting API
+  description: 'Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.
+
+
+    Endpoints marked "confirmed" below appear directly in Shipwell''s public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked "modeled" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.
+
+
+    Base URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.'
+  version: '2.0'
+  contact:
+    name: Shipwell
+    url: https://docs.shipwell.com/
+servers:
+- url: https://api.shipwell.com/v2
+  description: Production (v2 Core API)
+- url: https://sandbox-api.shipwell.com/v2
+  description: Sandbox (v2 Core API)
+- url: https://api.shipwell.com
+  description: Production host root (Orders API, served without the /v2 prefix)
+security:
+- authToken: []
+tags:
+- name: Quoting
+  description: Rates, quotes, RFQs, spot negotiations, and carrier bids. (modeled)
+paths:
+  /quotes/:
+    post:
+      operationId: createQuote
+      tags:
+      - Quoting
+      summary: Request a quote / rates
+      description: Requests rates and quotes for a shipment (an RFQ). Modeled from the documented quoting resource group - confirm the exact path, request, and response schema against the live reference. (modeled)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '201':
+          description: The created quote / rate request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /quotes/{quoteId}/:
+    parameters:
+    - name: quoteId
+      in: path
+      required: true
+      description: The ID of the quote.
+      schema:
+        type: string
+    get:
+      operationId: getQuote
+      tags:
+      - Quoting
+      summary: Retrieve a quote
+      description: Retrieves a quote and its returned rates. (modeled)
+      responses:
+        '200':
+          description: The requested quote.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      properties:
+        shipment:
+          type: string
+          description: ID of the shipment to rate, or an inline shipment payload.
+        mode:
+          type: array
+          items:
+            type: string
+        equipment_type:
+          type: array
+          items:
+            type: string
+    Quote:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              carrier:
+                type: string
+              total:
+                type: number
+              currency:
+                type: string
+              transit_days:
+                type: integer
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Company-scoped API key passed in the Authorization header (the docs refer to this as the AuthToken scheme). Production and sandbox use separate keys. Keys can be permission-restricted.
