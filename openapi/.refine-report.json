@@ -1,0 +1,22 @@
+{
+  "provider": "shipwell",
+  "sources": [
+    "shipwell-carriers-api-openapi.yml",
+    "shipwell-events-and-webhooks-api-openapi.yml",
+    "shipwell-orders-api-openapi.yml",
+    "shipwell-quoting-api-openapi.yml",
+    "shipwell-shipments-api-openapi.yml"
+  ],
+  "outputs": [
+    "shipwell-carriers-api-openapi.yml",
+    "shipwell-events-and-webhooks-api-openapi.yml",
+    "shipwell-orders-api-openapi.yml",
+    "shipwell-quoting-api-openapi.yml",
+    "shipwell-shipments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
