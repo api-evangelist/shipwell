@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shipwell v2 Core Carriers Events and Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events and Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/events/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves supply-chain events, including shipment tracking timeline updates. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "List available event names by version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/events/event-names-by-version/"
+          },
+          "docs": "Returns the up-to-date list of event names available for webhook subscriptions, keyed by version. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/webhooks/"
+          },
+          "docs": "Lists the webhook subscriptions configured for your company. (modeled)"
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shipwell.com/v2/webhooks/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a webhook subscription. Shipwell delivers matching events by HTTP POST to the configured endpoint URL. (partly confirmed)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,458 @@
+{
+  "item": [
+    {
+      "id": "49d0788c-1a9e-4d81-bd05-187430aa7704",
+      "name": "Quoting",
+      "description": {
+        "content": "Rates, quotes, RFQs, spot negotiations, and carrier bids. (modeled)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb765dfe-e824-4da2-827a-268d7035942f",
+          "name": "Request a quote / rates",
+          "request": {
+            "name": "Request a quote / rates",
+            "description": {
+              "content": "Requests rates and quotes for a shipment (an RFQ). Modeled from the documented quoting resource group - confirm the exact path, request, and response schema against the live reference. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipment\": \"<string>\",\n  \"mode\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"equipment_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14a9a4d9-a89a-48f8-8eae-b923bdb18618",
+              "name": "The created quote / rate request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment\": \"<string>\",\n  \"mode\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"equipment_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"rates\": [\n    {\n      \"carrier\": \"string\",\n      \"total\": 2361.0131032769355,\n      \"currency\": \"string\",\n      \"transit_days\": 612\n    },\n    {\n      \"carrier\": \"string\",\n      \"total\": 7224.8444211697115,\n      \"currency\": \"string\",\n      \"transit_days\": 3735\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0086e8e7-e5d1-4016-b142-6a4c488af0bf",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment\": \"<string>\",\n  \"mode\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"equipment_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 3419.658131184841\n    },\n    {\n      \"key_0\": 587.5301446164005,\n      \"key_1\": 6404.563123691493\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6b3308d-9ed5-45b5-8fc1-14844e906527",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment\": \"<string>\",\n  \"mode\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"equipment_type\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 3456.041797481637,\n      \"key_1\": 234,\n      \"key_2\": true\n    },\n    {\n      \"key_0\": 5722,\n      \"key_1\": 5766.050474597113\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10963a63-56e7-43c7-ab40-ec2b7e170678",
+          "name": "Retrieve a quote",
+          "request": {
+            "name": "Retrieve a quote",
+            "description": {
+              "content": "Retrieves a quote and its returned rates. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ":quoteId",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) The ID of the quote."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad292a08-77bf-4ec7-a664-df91698a97ee",
+              "name": "The requested quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) The ID of the quote."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"rates\": [\n    {\n      \"carrier\": \"string\",\n      \"total\": 6888.380097561158,\n      \"currency\": \"string\",\n      \"transit_days\": 27\n    },\n    {\n      \"carrier\": \"string\",\n      \"total\": 9556.798864918415,\n      \"currency\": \"string\",\n      \"transit_days\": 9095\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51b932d8-9660-4c33-aa44-e71c4ba22687",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) The ID of the quote."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 3456.041797481637,\n      \"key_1\": 234,\n      \"key_2\": true\n    },\n    {\n      \"key_0\": 5722,\n      \"key_1\": 5766.050474597113\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b596b1f1-b54f-44a8-94c2-f153484bbce4",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) The ID of the quote."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 3456.041797481637,\n      \"key_1\": 234,\n      \"key_2\": true\n    },\n    {\n      \"key_0\": 5722,\n      \"key_1\": 5766.050474597113\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92c7ac26-5e6a-43ef-9ccc-08528a1aeb65",
+    "name": "Shipwell v2 Core Carriers Quoting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.\n\nEndpoints marked \"confirmed\" below appear directly in Shipwell's public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked \"modeled\" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.\n\nBase URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.\n\nContact Support:\n Name: Shipwell",
+      "type": "text/plain"
+    }
+  }
+}

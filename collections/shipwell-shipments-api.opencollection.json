@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shipwell v2 Core Carriers Shipments API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/shipments/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of shipments visible to the authenticated company. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "Create a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shipwell.com/v2/shipments/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a shipment. Minimum fields include metadata, mode, equipment_type, service_level, stops (at least one pickup and one dropoff), and line_items. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "Retrieve a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/shipments/:shipmentId/",
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ]
+          },
+          "docs": "Retrieves a single shipment by its ID. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "Update a shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.shipwell.com/v2/shipments/:shipmentId/",
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing shipment. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "List notes for a shipment or shipment quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/shipments/:shipmentId/notes/",
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ]
+          },
+          "docs": "Lists the notes attached to a shipment or shipment quote. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "Create a shipment note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shipwell.com/v2/shipments/:shipmentId/notes/",
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a note to a shipment. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "Update a tendered shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.shipwell.com/v2/shipments/tenders/:tenderId/",
+            "params": [
+              {
+                "name": "tenderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the tender."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a tendered shipment to a Shipwell company. Only valid for shipments created by posting to this endpoint. (confirmed)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

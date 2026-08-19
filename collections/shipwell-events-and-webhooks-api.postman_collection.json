@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "b298ec83-6577-44b4-b3d2-10d86386abcc",
+      "name": "Events and Webhooks",
+      "description": {
+        "content": "Real-time supply-chain events and webhook subscriptions. (partly confirmed)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3115c0b7-2957-4d07-9ff6-3d6859b69e29",
+          "name": "Retrieve a list of events",
+          "request": {
+            "name": "Retrieve a list of events",
+            "description": {
+              "content": "Retrieves supply-chain events, including shipment tracking timeline updates. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8be7497e-aead-43cc-a68e-64b9d3361b25",
+              "name": "A list of events.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"event_name\": \"string\",\n    \"version\": \"string\",\n    \"occurred_at\": \"1999-05-02T01:49:20.095Z\",\n    \"data\": {\n      \"key_0\": 9333,\n      \"key_1\": true\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"event_name\": \"string\",\n    \"version\": \"string\",\n    \"occurred_at\": \"1977-06-01T01:00:48.324Z\",\n    \"data\": {\n      \"key_0\": 7143,\n      \"key_1\": \"string\",\n      \"key_2\": 5353,\n      \"key_3\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4880a68a-f745-4150-af0c-aa00d5078395",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 4977,\n      \"key_1\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef6643d6-e52b-476e-b040-0af66bd75db4",
+          "name": "List available event names by version",
+          "request": {
+            "name": "List available event names by version",
+            "description": {
+              "content": "Returns the up-to-date list of event names available for webhook subscriptions, keyed by version. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "event-names-by-version",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c72dbc76-aeb7-4faf-9476-c70e7ba293e0",
+              "name": "A map of event names by version.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "event-names-by-version",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": 3894.1575009144904,\n  \"key_2\": 4672.903129592077\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "976658a2-ea30-43ad-834a-7c131a7b9e73",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "event-names-by-version",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6477.650102707577,\n      \"key_1\": 4391,\n      \"key_2\": 4932\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7148b3ed-d3b0-4558-add2-f3febb9d40cb",
+          "name": "List webhook subscriptions",
+          "request": {
+            "name": "List webhook subscriptions",
+            "description": {
+              "content": "Lists the webhook subscriptions configured for your company. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0121531c-969f-4584-a8a3-ab1e08d054e1",
+              "name": "A list of webhook subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"url\": \"http://IOecbTXnQwihpXHPAJwecOCK.lhXIN6g.RIAdKbzL-uEz\",\n    \"id\": \"string\",\n    \"event_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_active\": false\n  },\n  {\n    \"url\": \"https://Ctvzco.gxqS3vVXkNN\",\n    \"id\": \"string\",\n    \"event_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_active\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b719a2f3-8a7a-4d9f-bd2e-128c5b45c024",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6477.650102707577,\n      \"key_1\": 4391,\n      \"key_2\": 4932\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3db9276-365c-46cd-b286-02f7fd2bd67a",
+          "name": "Create a webhook subscription",
+          "request": {
+            "name": "Create a webhook subscription",
+            "description": {
+              "content": "Creates a webhook subscription. Shipwell delivers matching events by HTTP POST to the configured endpoint URL. (partly confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<string>\",\n  \"event_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a96ee0cb-03e6-4a39-bb2b-cc16357fe76b",
+              "name": "The created webhook subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<string>\",\n  \"event_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<string>\",\n  \"event_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_active\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2a5fcd9-00a0-4a5b-8fc8-2cd29606fbd2",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<string>\",\n  \"event_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6477.650102707577,\n      \"key_1\": 4391,\n      \"key_2\": 4932\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14465554-b2ca-4d8f-9af9-00ba20adc42c",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<string>\",\n  \"event_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6477.650102707577,\n      \"key_1\": 4391,\n      \"key_2\": 4932\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ec5a586-3c69-40d8-90be-b0b6c32bbc30",
+    "name": "Shipwell v2 Core Carriers Events and Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.\n\nEndpoints marked \"confirmed\" below appear directly in Shipwell's public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked \"modeled\" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.\n\nBase URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.\n\nContact Support:\n Name: Shipwell",
+      "type": "text/plain"
+    }
+  }
+}

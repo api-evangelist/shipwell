@@ -1,0 +1,581 @@
+{
+  "item": [
+    {
+      "id": "c61a999a-6608-4bf8-98a1-d111300237af",
+      "name": "Orders",
+      "description": {
+        "content": "Orders and purchase orders consolidated onto shipments. (modeled)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "182b6750-941d-4c10-bf4f-d8d758c52d4e",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "Lists orders. The newer Orders API is served under the host root without the /v2 prefix (https://api.shipwell.com/orders). Modeled from the documented orders resource group. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{orders-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cdbb93b-f94a-4215-8aa2-052ef9be9cf3",
+              "name": "A list of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{orders-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"order_number\": \"string\",\n    \"status\": \"string\",\n    \"line_items\": [\n      {\n        \"description\": \"string\",\n        \"total_packages\": \"string\",\n        \"package_weight\": \"string\",\n        \"weight_unit\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"total_packages\": \"string\",\n        \"package_weight\": \"string\",\n        \"weight_unit\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"order_number\": \"string\",\n    \"status\": \"string\",\n    \"line_items\": [\n      {\n        \"description\": \"string\",\n        \"total_packages\": \"string\",\n        \"package_weight\": \"string\",\n        \"weight_unit\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"total_packages\": \"string\",\n        \"package_weight\": \"string\",\n        \"weight_unit\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ae5b070-a9ae-41e5-a419-b049fb159194",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{orders-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": 8002.4928226420425\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0f18c96-22c2-4df6-9230-98aa2e16d901",
+          "name": "Create an order",
+          "request": {
+            "name": "Create an order",
+            "description": {
+              "content": "Creates an order that can later be consolidated onto a shipment. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{orders-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d78ed77-6f05-4715-a87e-1076378c3f8a",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{orders-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c26c641c-fa19-4fa5-b2ec-d3be3024cce9",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{orders-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6552,\n      \"key_1\": false,\n      \"key_2\": 4474.859520011887,\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": 4506,\n      \"key_1\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8edf255e-723c-4183-a050-9e07f35ad5ea",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{orders-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6552,\n      \"key_1\": false,\n      \"key_2\": 4474.859520011887,\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": 4506,\n      \"key_1\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58f52987-45d7-496a-8ce1-c5d64317298d",
+          "name": "Retrieve an order",
+          "request": {
+            "name": "Retrieve an order",
+            "description": {
+              "content": "Retrieves a single order by its ID. (modeled)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{orders-orderId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) The ID of the order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "758267bb-b233-4bb4-9043-994a8bdf68ba",
+              "name": "The requested order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{orders-orderId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"status\": \"<string>\",\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dc12e4f-9115-4160-afe1-ed4491bc734a",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{orders-orderId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6552,\n      \"key_1\": false,\n      \"key_2\": 4474.859520011887,\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": 4506,\n      \"key_1\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ebb4046-f70c-49fa-be52-ee2d08f9a5d1",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{orders-orderId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) The ID of the order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 6552,\n      \"key_1\": false,\n      \"key_2\": 4474.859520011887,\n      \"key_3\": \"string\"\n    },\n    {\n      \"key_0\": 4506,\n      \"key_1\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com/v2",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com",
+      "key": "orders-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com",
+      "key": "orders-orderId-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3692457f-26f7-44cf-87e2-4f08a2b547aa",
+    "name": "Shipwell v2 Core Carriers Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.\n\nEndpoints marked \"confirmed\" below appear directly in Shipwell's public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked \"modeled\" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.\n\nBase URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.\n\nContact Support:\n Name: Shipwell",
+      "type": "text/plain"
+    }
+  }
+}

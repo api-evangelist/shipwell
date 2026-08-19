@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shipwell v2 Core Carriers API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new carrier assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shipwell.com/v2/shipments/:shipmentId/carrier-assignments/",
+            "params": [
+              {
+                "name": "shipmentId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns a carrier to a shipment. (confirmed)"
+        },
+        {
+          "info": {
+            "name": "List carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/carriers/"
+          },
+          "docs": "Lists carriers in your network, including compliance and performance master data. Modeled from the documented carriers resource group. (modeled)"
+        },
+        {
+          "info": {
+            "name": "Retrieve a carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shipwell.com/v2/carriers/:carrierId/",
+            "params": [
+              {
+                "name": "carrierId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the carrier."
+              }
+            ]
+          },
+          "docs": "Retrieves a single carrier by its ID. (modeled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

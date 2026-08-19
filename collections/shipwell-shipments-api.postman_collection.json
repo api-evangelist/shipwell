@@ -1,0 +1,1433 @@
+{
+  "item": [
+    {
+      "id": "899b2590-2b4c-4c31-8df5-6c2ff9b73bb3",
+      "name": "Shipments",
+      "description": {
+        "content": "Multimodal freight shipments - the central platform resource. (confirmed)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1be3052-5f2d-4dae-814a-aa199fa8ea54",
+          "name": "List shipments",
+          "request": {
+            "name": "List shipments",
+            "description": {
+              "content": "Returns a paginated list of shipments visible to the authenticated company. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bce73ba6-98bf-436e-871e-f97193966982",
+              "name": "A paginated list of shipments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"stops\": [\n        {\n          \"ordinal_index\": 2775,\n          \"is_pickup\": true,\n          \"is_dropoff\": true,\n          \"planned_date\": \"1947-03-01\",\n          \"planned_time_window_start\": \"string\",\n          \"planned_time_window_end\": \"string\",\n          \"location\": {\n            \"location_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"ordinal_index\": 961,\n          \"is_pickup\": false,\n          \"is_dropoff\": true,\n          \"planned_date\": \"1992-12-20\",\n          \"planned_time_window_start\": \"string\",\n          \"planned_time_window_end\": \"string\",\n          \"location\": {\n            \"location_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"line_items\": [\n        {\n          \"description\": \"string\",\n          \"total_packages\": \"string\",\n          \"package_weight\": \"string\",\n          \"weight_unit\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"total_packages\": \"string\",\n          \"package_weight\": \"string\",\n          \"weight_unit\": \"string\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": 3426.639772818296,\n        \"key_1\": 2161\n      },\n      \"mode\": {\n        \"key_0\": 5406.604698438201,\n        \"key_1\": 2989.4259031468187\n      },\n      \"equipment_type\": {\n        \"key_0\": \"string\",\n        \"key_1\": 5733\n      },\n      \"service_level\": {\n        \"key_0\": 8684.483660281845\n      },\n      \"id\": \"string\",\n      \"reference_id\": \"string\",\n      \"state\": \"string\"\n    },\n    {\n      \"stops\": [\n        {\n          \"ordinal_index\": 2911,\n          \"is_pickup\": false,\n          \"is_dropoff\": false,\n          \"planned_date\": \"1989-06-12\",\n          \"planned_time_window_start\": \"string\",\n          \"planned_time_window_end\": \"string\",\n          \"location\": {\n            \"location_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"ordinal_index\": 3362,\n          \"is_pickup\": true,\n          \"is_dropoff\": false,\n          \"planned_date\": \"1971-02-28\",\n          \"planned_time_window_start\": \"string\",\n          \"planned_time_window_end\": \"string\",\n          \"location\": {\n            \"location_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"line_items\": [\n        {\n          \"description\": \"string\",\n          \"total_packages\": \"string\",\n          \"package_weight\": \"string\",\n          \"weight_unit\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"total_packages\": \"string\",\n          \"package_weight\": \"string\",\n          \"weight_unit\": \"string\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": 1636.144192107557,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"mode\": {\n        \"key_0\": 3663\n      },\n      \"equipment_type\": {\n        \"key_0\": \"string\"\n      },\n      \"service_level\": {\n        \"key_0\": 6393.697448683067,\n        \"key_1\": 779\n      },\n      \"id\": \"string\",\n      \"reference_id\": \"string\",\n      \"state\": \"string\"\n    }\n  ],\n  \"page\": 6562,\n  \"total_count\": 8522\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8baaeb5-fbe4-4ad3-b07b-b1ec6a6ba87c",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": 4563.3216064016315\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": 327\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "802ec4f6-901b-494a-8d52-abec34bd5e72",
+          "name": "Create a shipment",
+          "request": {
+            "name": "Create a shipment",
+            "description": {
+              "content": "Creates a shipment. Minimum fields include metadata, mode, equipment_type, service_level, stops (at least one pickup and one dropoff), and line_items. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"mode\": {\n    \"key_0\": 8468.078205609567,\n    \"key_1\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": 825\n  },\n  \"service_level\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52f193d7-712a-4d31-9d41-fec90752dba5",
+              "name": "The created shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5540.3592146276105\n  },\n  \"mode\": {\n    \"key_0\": 6526.744879297153,\n    \"key_1\": 2576.5517842077634,\n    \"key_2\": 1892\n  },\n  \"equipment_type\": {\n    \"key_0\": 6325.682873691594\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 502\n  },\n  \"id\": \"string\",\n  \"reference_id\": \"string\",\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f15cd320-2a80-4066-a892-89f7b813bc8a",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "873d0172-5346-4503-bf23-5185df7f08cb",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87e6e08b-1c58-45b2-afa0-2d8b4bd542e2",
+          "name": "Retrieve a shipment",
+          "request": {
+            "name": "Retrieve a shipment",
+            "description": {
+              "content": "Retrieves a single shipment by its ID. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":shipmentId",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipmentId",
+                  "description": "(Required) The ID of the shipment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b40dba1d-9569-4357-8e68-7d7113b2f54b",
+              "name": "The requested shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5540.3592146276105\n  },\n  \"mode\": {\n    \"key_0\": 6526.744879297153,\n    \"key_1\": 2576.5517842077634,\n    \"key_2\": 1892\n  },\n  \"equipment_type\": {\n    \"key_0\": 6325.682873691594\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 502\n  },\n  \"id\": \"string\",\n  \"reference_id\": \"string\",\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c2ad51e-172b-4c27-896d-aba49c2b6540",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c640d5bd-83c5-483a-8a82-2eea8d157d66",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "420b24ea-c269-47d6-88ad-a0747f201367",
+          "name": "Update a shipment",
+          "request": {
+            "name": "Update a shipment",
+            "description": {
+              "content": "Updates an existing shipment. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":shipmentId",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipmentId",
+                  "description": "(Required) The ID of the shipment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true\n  },\n  \"mode\": {\n    \"key_0\": 8468.078205609567,\n    \"key_1\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": 825\n  },\n  \"service_level\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cb844cf-1eb7-40c1-8326-6614ac1f8d6d",
+              "name": "The updated shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": 5540.3592146276105\n  },\n  \"mode\": {\n    \"key_0\": 6526.744879297153,\n    \"key_1\": 2576.5517842077634,\n    \"key_2\": 1892\n  },\n  \"equipment_type\": {\n    \"key_0\": 6325.682873691594\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 502\n  },\n  \"id\": \"string\",\n  \"reference_id\": \"string\",\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "712194b1-86c1-4637-9c1a-9202bdd99a88",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b51750d-f820-4327-ba88-d91f13aaed1a",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd9c9462-e8b5-44ee-8edb-c5a15f146d37",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": [\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"ordinal_index\": \"<integer>\",\n      \"is_pickup\": \"<boolean>\",\n      \"is_dropoff\": \"<boolean>\",\n      \"planned_date\": \"<date>\",\n      \"planned_time_window_start\": \"<string>\",\n      \"planned_time_window_end\": \"<string>\",\n      \"location\": {\n        \"location_name\": \"<string>\",\n        \"address\": {\n          \"address_1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state_province\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"line_items\": [\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"total_packages\": \"<string>\",\n      \"package_weight\": \"<string>\",\n      \"weight_unit\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  },\n  \"mode\": {\n    \"key_0\": \"string\"\n  },\n  \"equipment_type\": {\n    \"key_0\": false,\n    \"key_1\": 8937.250887358716\n  },\n  \"service_level\": {\n    \"key_0\": false,\n    \"key_1\": 3358,\n    \"key_2\": 1058.7389833123727,\n    \"key_3\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa70e505-a2d7-4706-86df-50b7cb0d6822",
+          "name": "List notes for a shipment or shipment quote",
+          "request": {
+            "name": "List notes for a shipment or shipment quote",
+            "description": {
+              "content": "Lists the notes attached to a shipment or shipment quote. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":shipmentId",
+                "notes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipmentId",
+                  "description": "(Required) The ID of the shipment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3804127-076e-49a6-81eb-3c1623c5112c",
+              "name": "A list of shipment notes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    "notes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"message\": \"string\",\n    \"additional_data\": {\n      \"key_0\": false\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"message\": \"string\",\n    \"additional_data\": {\n      \"key_0\": true,\n      \"key_1\": 2890.530031881288,\n      \"key_2\": 6865.4355575655745\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ca82231-3b33-4d48-a3e4-6ceca42a62e3",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    "notes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "465bb529-624f-40ee-9852-de212a8310c5",
+          "name": "Create a shipment note",
+          "request": {
+            "name": "Create a shipment note",
+            "description": {
+              "content": "Adds a note to a shipment. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":shipmentId",
+                "notes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipmentId",
+                  "description": "(Required) The ID of the shipment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"additional_data\": {\n    \"key_0\": 1364\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21e83e1b-e80f-4350-a09d-82b1c8b2012c",
+              "name": "The created shipment note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    "notes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"additional_data\": {\n    \"key_0\": 6592,\n    \"key_1\": \"string\",\n    \"key_2\": 6305.95606674533,\n    \"key_3\": \"string\",\n    \"key_4\": 6427\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"additional_data\": {\n    \"key_0\": 6592,\n    \"key_1\": \"string\",\n    \"key_2\": 6305.95606674533,\n    \"key_3\": \"string\",\n    \"key_4\": 6427\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34b67000-dff2-42f3-b757-4fde466521e0",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipmentId",
+                    "notes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipmentId",
+                      "description": "(Required) The ID of the shipment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"additional_data\": {\n    \"key_0\": 6592,\n    \"key_1\": \"string\",\n    \"key_2\": 6305.95606674533,\n    \"key_3\": \"string\",\n    \"key_4\": 6427\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f14dfdd7-32f1-417f-a859-687f4f250eed",
+          "name": "Update a tendered shipment",
+          "request": {
+            "name": "Update a tendered shipment",
+            "description": {
+              "content": "Updates a tendered shipment to a Shipwell company. Only valid for shipments created by posting to this endpoint. (confirmed)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                "tenders",
+                ":tenderId",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenderId",
+                  "description": "(Required) The ID of the tender."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 9863.587178214657,\n  \"key_1\": 8870.382726054357,\n  \"key_2\": \"string\",\n  \"key_3\": 2630\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e49a94b-e485-4b51-a7d2-28034939ae28",
+              "name": "The updated tender.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "tenders",
+                    ":tenderId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenderId",
+                      "description": "(Required) The ID of the tender."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5675,\n  \"key_1\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5675,\n  \"key_1\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad2dfc18-b344-4de6-ac9d-77c5dd69bba4",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "tenders",
+                    ":tenderId",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenderId",
+                      "description": "(Required) The ID of the tender."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 5675,\n  \"key_1\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_description\": \"string\",\n  \"errors\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 9222.66972765007,\n      \"key_1\": 9783.614328839674,\n      \"key_2\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shipwell.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3659857b-cd14-4ecb-a406-2e69c9c0f940",
+    "name": "Shipwell v2 Core Carriers Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.\n\nEndpoints marked \"confirmed\" below appear directly in Shipwell's public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked \"modeled\" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.\n\nBase URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.\n\nContact Support:\n Name: Shipwell",
+      "type": "text/plain"
+    }
+  }
+}
