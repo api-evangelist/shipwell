@@ -78,6 +78,8 @@ apis:
   humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
   baseURL: https://api.shipwell.com/v2
   tags:
+  - Events & Webhooks
+  tags_raw:
   - Events and Webhooks
   properties:
   - type: OpenAPI
@@ -110,6 +112,8 @@ apis:
   humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
   baseURL: https://api.shipwell.com/v2
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
