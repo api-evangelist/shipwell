@@ -90,7 +90,7 @@ apis:
   humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
   baseURL: https://api.shipwell.com/v2
   tags:
-  - Events and Webhooks
+  - Events & Webhooks
   tags_raw:
   - Events and Webhooks
   properties:
