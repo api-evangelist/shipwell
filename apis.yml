@@ -85,40 +85,6 @@ apis:
     url: https://docs.shipwell.com/docs/webhook/what-are-webhooks/
   - type: APIReference
     url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
-- aid: shipwell:shipwell-events-and-webhooks-api
-  name: Shipwell Events and Webhooks API
-  description: Real-time supply-chain events and webhook subscriptions. (partly confirmed)
-  humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
-  baseURL: https://api.shipwell.com/v2
-  tags:
-  - Events & Webhooks
-  tags_raw:
-  - Events and Webhooks
-  properties:
-  - type: OpenAPI
-    url: openapi/shipwell-events-and-webhooks-api-openapi.yml
-  - type: Documentation
-    url: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
-  - type: APIReference
-    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/shipments/
-  - type: PostmanCollection
-    url: collections/shipwell.postman_collection.json
-  - type: OpenCollection
-    url: collections/shipwell.opencollection.json
-  - type: Documentation
-    url: https://docs.shipwell.com/openapi_pages/backend-core/overview/
-  - type: APIReference
-    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/quoting/
-  - type: APIReference
-    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/carriers/
-  - type: Documentation
-    url: https://docs.shipwell.com/docs/orders/orders-legacy-v2/
-  - type: APIReference
-    url: https://docs.shipwell.com/openapi_pages/backend-core/overview/
-  - type: Documentation
-    url: https://docs.shipwell.com/docs/webhook/what-are-webhooks/
-  - type: APIReference
-    url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
 - aid: shipwell:shipwell-orders-api
   name: Shipwell Orders API
   description: Orders and purchase orders consolidated onto shipments. (modeled)
@@ -195,6 +161,38 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/shipwell-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
+  - type: APIReference
+    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/shipments/
+  - type: PostmanCollection
+    url: collections/shipwell.postman_collection.json
+  - type: OpenCollection
+    url: collections/shipwell.opencollection.json
+  - type: Documentation
+    url: https://docs.shipwell.com/openapi_pages/backend-core/overview/
+  - type: APIReference
+    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/quoting/
+  - type: APIReference
+    url: https://docs.shipwell.com/openapi_pages/backend-core/tag/carriers/
+  - type: Documentation
+    url: https://docs.shipwell.com/docs/orders/orders-legacy-v2/
+  - type: APIReference
+    url: https://docs.shipwell.com/openapi_pages/backend-core/overview/
+  - type: Documentation
+    url: https://docs.shipwell.com/docs/webhook/what-are-webhooks/
+  - type: APIReference
+    url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
+- aid: shipwell:shipwell-events-webhooks-api
+  name: Shipwell Events & Webhooks API
+  description: Real-time supply-chain events and webhook subscriptions. (partly confirmed)
+  humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
+  baseURL: https://api.shipwell.com/v2
+  tags:
+  - Events & Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/shipwell-events-webhooks-api-openapi.yml
   - type: Documentation
     url: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
   - type: APIReference
