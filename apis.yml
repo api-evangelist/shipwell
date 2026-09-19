@@ -59,6 +59,8 @@ apis:
   humanURL: https://docs.shipwell.com/docs/shipments/create-your-first-shipment/
   baseURL: https://api.shipwell.com/v2
   tags:
+  - Carrier
+  tags_raw:
   - Carriers
   properties:
   - type: OpenAPI
