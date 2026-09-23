@@ -1,11 +1,7 @@
 {
   "provider": "shipwell",
   "sources": [
-    "shipwell-carriers-api-openapi.yml",
-    "shipwell-events-and-webhooks-api-openapi.yml",
-    "shipwell-orders-api-openapi.yml",
-    "shipwell-quoting-api-openapi.yml",
-    "shipwell-shipments-api-openapi.yml"
+    "_original/shipwell-openapi.yml"
   ],
   "outputs": [
     "shipwell-carriers-api-openapi.yml",
@@ -14,9 +10,22 @@
     "shipwell-quoting-api-openapi.yml",
     "shipwell-shipments-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shipwell-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: shipwell-events-webhooks-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
+  ],
+  "skipped": [
+    "shipwell-carriers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipwell-events-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipwell-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipwell-quoting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shipwell-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,13 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Shipwell v2 Core Carriers API
-  description: 'Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.
-
-
-    Endpoints marked "confirmed" below appear directly in Shipwell''s public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked "modeled" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.
-
-
-    Base URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.'
+  description: Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API.
   version: '2.0'
   contact:
     name: Shipwell
@@ -93,6 +87,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid API key.
@@ -106,36 +108,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
   schemas:
-    CarrierAssignment:
-      type: object
-      properties:
-        id:
-          type: string
-        carrier:
-          type: string
-        rate:
-          type: number
-        currency:
-          type: string
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     Carrier:
       type: object
       properties:
@@ -150,6 +123,27 @@ components:
         mc_number:
           type: string
         compliance_status:
+          type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    CarrierAssignment:
+      type: object
+      properties:
+        id:
+          type: string
+        carrier:
+          type: string
+        rate:
+          type: number
+        currency:
           type: string
   securitySchemes:
     authToken:

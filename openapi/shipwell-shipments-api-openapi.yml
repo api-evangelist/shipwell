@@ -1,13 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Shipwell v2 Core Carriers Shipments API
-  description: 'Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API. Shipwell is an AI-powered freight execution platform; its public documentation and full API reference live at https://docs.shipwell.com/ but the complete platform and API are enterprise and contract-gated, so exact request and response schemas are best confirmed against the live reference and an authenticated account.
-
-
-    Endpoints marked "confirmed" below appear directly in Shipwell''s public docs (shipment create/list/get, shipment notes, carrier assignments, tenders, and the events list). Endpoints marked "modeled" are honestly inferred from the documented resource groups (quoting, spot-negotiations, carrier-bids, carriers, carrier-relationships, orders, purchase-orders, webhooks) and are included to represent the shape of each logical API - verify them before use.
-
-
-    Base URLs. Most of the v2 Core API is served under https://api.shipwell.com/v2 with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. The newer Orders API is served under the host root without the /v2 prefix (for example https://api.shipwell.com/orders). Requests are authenticated with company-scoped API keys passed in the Authorization header (the docs call this the AuthToken scheme). Production and sandbox use separate keys, and objects created in one environment cannot be manipulated from the other.'
+  title: Shipwell v2 Core Shipments API
+  description: Partial, honestly-modeled OpenAPI description of the Shipwell transportation management system (TMS) API.
   version: '2.0'
   contact:
     name: Shipwell
@@ -193,41 +187,26 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   schemas:
-    Stop:
-      type: object
-      properties:
-        ordinal_index:
-          type: integer
-        is_pickup:
-          type: boolean
-        is_dropoff:
-          type: boolean
-        planned_date:
-          type: string
-          format: date
-        planned_time_window_start:
-          type: string
-        planned_time_window_end:
-          type: string
-        location:
-          type: object
-          properties:
-            location_name:
-              type: string
-            address:
-              $ref: '#/components/schemas/Address'
-    ShipmentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        page:
-          type: integer
-        total_count:
-          type: integer
+    Shipment:
+      allOf:
+      - $ref: '#/components/schemas/ShipmentInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          reference_id:
+            type: string
+          state:
+            type: string
     ShipmentInput:
       type: object
       required:
@@ -267,27 +246,17 @@ components:
           type: string
         country:
           type: string
-    Shipment:
-      allOf:
-      - $ref: '#/components/schemas/ShipmentInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          reference_id:
-            type: string
-          state:
-            type: string
-    ShipmentNote:
+    ShipmentList:
       type: object
       properties:
-        id:
-          type: string
-        message:
-          type: string
-        additional_data:
-          type: object
-          additionalProperties: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        page:
+          type: integer
+        total_count:
+          type: integer
     LineItem:
       type: object
       properties:
@@ -309,15 +278,42 @@ components:
           items:
             type: object
             additionalProperties: true
+    Stop:
+      type: object
+      properties:
+        ordinal_index:
+          type: integer
+        is_pickup:
+          type: boolean
+        is_dropoff:
+          type: boolean
+        planned_date:
+          type: string
+          format: date
+        planned_time_window_start:
+          type: string
+        planned_time_window_end:
+          type: string
+        location:
+          type: object
+          properties:
+            location_name:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
+    ShipmentNote:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        additional_data:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -328,14 +324,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     authToken:
       type: apiKey
