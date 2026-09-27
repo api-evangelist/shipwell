@@ -93,6 +93,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    LineItem:
+      type: object
+      properties:
+        description:
+          type: string
+        total_packages:
+          type: string
+        package_weight:
+          type: string
+        weight_unit:
+          type: string
     Order:
       type: object
       properties:
@@ -106,28 +127,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-    LineItem:
-      type: object
-      properties:
-        description:
-          type: string
-        total_packages:
-          type: string
-        package_weight:
-          type: string
-        weight_unit:
-          type: string
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
   responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -136,12 +142,6 @@ components:
             $ref: '#/components/schemas/Error'
     ValidationError:
       description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
       content:
         application/json:
           schema:

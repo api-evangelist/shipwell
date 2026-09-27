@@ -103,21 +103,16 @@ paths:
           $ref: '#/components/responses/ValidationError'
 components:
   schemas:
-    Event:
+    Error:
       type: object
       properties:
-        id:
+        error_description:
           type: string
-        event_name:
-          type: string
-        version:
-          type: string
-        occurred_at:
-          type: string
-          format: date-time
-        data:
-          type: object
-          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     Webhook:
       type: object
       required:
@@ -134,16 +129,21 @@ components:
             type: string
         is_active:
           type: boolean
-    Error:
+    Event:
       type: object
       properties:
-        error_description:
+        id:
           type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
+        event_name:
+          type: string
+        version:
+          type: string
+        occurred_at:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.

@@ -87,43 +87,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Carrier:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        scac:
-          type: string
-        dot_number:
-          type: string
-        mc_number:
-          type: string
-        compliance_status:
-          type: string
     Error:
       type: object
       properties:
@@ -145,6 +109,42 @@ components:
           type: number
         currency:
           type: string
+    Carrier:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        scac:
+          type: string
+        dot_number:
+          type: string
+        mc_number:
+          type: string
+        compliance_status:
+          type: string
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     authToken:
       type: apiKey

@@ -187,15 +187,51 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Address:
+      type: object
+      properties:
+        address_1:
+          type: string
+        city:
+          type: string
+        state_province:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+    LineItem:
+      type: object
+      properties:
+        description:
+          type: string
+        total_packages:
+          type: string
+        package_weight:
+          type: string
+        weight_unit:
+          type: string
+    ShipmentNote:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        additional_data:
+          type: object
+          additionalProperties: true
     Shipment:
       allOf:
       - $ref: '#/components/schemas/ShipmentInput'
@@ -207,6 +243,17 @@ components:
             type: string
           state:
             type: string
+    ShipmentList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        page:
+          type: integer
+        total_count:
+          type: integer
     ShipmentInput:
       type: object
       required:
@@ -233,51 +280,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-    Address:
-      type: object
-      properties:
-        address_1:
-          type: string
-        city:
-          type: string
-        state_province:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-    ShipmentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        page:
-          type: integer
-        total_count:
-          type: integer
-    LineItem:
-      type: object
-      properties:
-        description:
-          type: string
-        total_packages:
-          type: string
-        package_weight:
-          type: string
-        weight_unit:
-          type: string
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     Stop:
       type: object
       properties:
@@ -301,17 +303,21 @@ components:
               type: string
             address:
               $ref: '#/components/schemas/Address'
-    ShipmentNote:
-      type: object
-      properties:
-        id:
-          type: string
-        message:
-          type: string
-        additional_data:
-          type: object
-          additionalProperties: true
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -320,12 +326,6 @@ components:
             $ref: '#/components/schemas/Error'
     ValidationError:
       description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
       content:
         application/json:
           schema:

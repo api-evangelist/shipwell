@@ -69,40 +69,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    QuoteRequest:
-      type: object
-      properties:
-        shipment:
-          type: string
-          description: ID of the shipment to rate, or an inline shipment payload.
-        mode:
-          type: array
-          items:
-            type: string
-        equipment_type:
-          type: array
-          items:
-            type: string
     Error:
       type: object
       properties:
@@ -133,6 +100,39 @@ components:
                 type: string
               transit_days:
                 type: integer
+    QuoteRequest:
+      type: object
+      properties:
+        shipment:
+          type: string
+          description: ID of the shipment to rate, or an inline shipment payload.
+        mode:
+          type: array
+          items:
+            type: string
+        equipment_type:
+          type: array
+          items:
+            type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     authToken:
       type: apiKey
