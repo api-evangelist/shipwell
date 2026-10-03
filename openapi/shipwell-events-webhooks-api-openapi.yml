@@ -113,6 +113,21 @@ components:
           items:
             type: object
             additionalProperties: true
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        event_name:
+          type: string
+        version:
+          type: string
+        occurred_at:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
     Webhook:
       type: object
       required:
@@ -129,21 +144,6 @@ components:
             type: string
         is_active:
           type: boolean
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-        event_name:
-          type: string
-        version:
-          type: string
-        occurred_at:
-          type: string
-          format: date-time
-        data:
-          type: object
-          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.

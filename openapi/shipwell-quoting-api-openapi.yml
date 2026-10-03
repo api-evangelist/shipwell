@@ -80,6 +80,20 @@ components:
           items:
             type: object
             additionalProperties: true
+    QuoteRequest:
+      type: object
+      properties:
+        shipment:
+          type: string
+          description: ID of the shipment to rate, or an inline shipment payload.
+        mode:
+          type: array
+          items:
+            type: string
+        equipment_type:
+          type: array
+          items:
+            type: string
     Quote:
       type: object
       properties:
@@ -100,29 +114,15 @@ components:
                 type: string
               transit_days:
                 type: integer
-    QuoteRequest:
-      type: object
-      properties:
-        shipment:
-          type: string
-          description: ID of the shipment to rate, or an inline shipment payload.
-        mode:
-          type: array
-          items:
-            type: string
-        equipment_type:
-          type: array
-          items:
-            type: string
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

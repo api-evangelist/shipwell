@@ -93,16 +93,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     LineItem:
       type: object
       properties:
@@ -114,6 +104,16 @@ components:
           type: string
         weight_unit:
           type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     Order:
       type: object
       properties:
@@ -128,14 +128,14 @@ components:
           items:
             $ref: '#/components/schemas/LineItem'
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
