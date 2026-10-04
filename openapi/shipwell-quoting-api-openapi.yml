@@ -70,16 +70,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
     QuoteRequest:
       type: object
       properties:
@@ -94,6 +84,16 @@ components:
           type: array
           items:
             type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     Quote:
       type: object
       properties:
@@ -115,6 +115,12 @@ components:
               transit_days:
                 type: integer
   responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -123,12 +129,6 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
       content:
         application/json:
           schema:

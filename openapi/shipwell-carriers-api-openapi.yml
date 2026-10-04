@@ -88,27 +88,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    CarrierAssignment:
-      type: object
-      properties:
-        id:
-          type: string
-        carrier:
-          type: string
-        rate:
-          type: number
-        currency:
-          type: string
     Carrier:
       type: object
       properties:
@@ -124,14 +103,27 @@ components:
           type: string
         compliance_status:
           type: string
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
+    CarrierAssignment:
+      type: object
+      properties:
+        id:
+          type: string
+        carrier:
+          type: string
+        rate:
+          type: number
+        currency:
+          type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid API key.
@@ -145,6 +137,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   securitySchemes:
     authToken:
       type: apiKey

@@ -102,7 +102,36 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Webhook:
+      type: object
+      required:
+      - url
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+        event_names:
+          type: array
+          items:
+            type: string
+        is_active:
+          type: boolean
     Error:
       type: object
       properties:
@@ -128,35 +157,6 @@ components:
         data:
           type: object
           additionalProperties: true
-    Webhook:
-      type: object
-      required:
-      - url
-      properties:
-        id:
-          type: string
-        url:
-          type: string
-          format: uri
-        event_names:
-          type: array
-          items:
-            type: string
-        is_active:
-          type: boolean
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     authToken:
       type: apiKey

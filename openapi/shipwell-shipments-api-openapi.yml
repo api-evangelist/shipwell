@@ -188,16 +188,50 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    Stop:
       type: object
       properties:
-        error_description:
+        ordinal_index:
+          type: integer
+        is_pickup:
+          type: boolean
+        is_dropoff:
+          type: boolean
+        planned_date:
           type: string
-        errors:
+          format: date
+        planned_time_window_start:
+          type: string
+        planned_time_window_end:
+          type: string
+        location:
+          type: object
+          properties:
+            location_name:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
+    ShipmentNote:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        additional_data:
+          type: object
+          additionalProperties: true
+    ShipmentList:
+      type: object
+      properties:
+        results:
           type: array
           items:
-            type: object
-            additionalProperties: true
+            $ref: '#/components/schemas/Shipment'
+        page:
+          type: integer
+        total_count:
+          type: integer
     LineItem:
       type: object
       properties:
@@ -235,61 +269,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
-    ShipmentList:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        page:
-          type: integer
-        total_count:
-          type: integer
-    Shipment:
-      allOf:
-      - $ref: '#/components/schemas/ShipmentInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          reference_id:
-            type: string
-          state:
-            type: string
-    ShipmentNote:
-      type: object
-      properties:
-        id:
-          type: string
-        message:
-          type: string
-        additional_data:
-          type: object
-          additionalProperties: true
-    Stop:
-      type: object
-      properties:
-        ordinal_index:
-          type: integer
-        is_pickup:
-          type: boolean
-        is_dropoff:
-          type: boolean
-        planned_date:
-          type: string
-          format: date
-        planned_time_window_start:
-          type: string
-        planned_time_window_end:
-          type: string
-        location:
-          type: object
-          properties:
-            location_name:
-              type: string
-            address:
-              $ref: '#/components/schemas/Address'
     Address:
       type: object
       properties:
@@ -303,23 +282,30 @@ components:
           type: string
         country:
           type: string
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    Shipment:
+      allOf:
+      - $ref: '#/components/schemas/ShipmentInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          reference_id:
+            type: string
+          state:
+            type: string
   responses:
     Unauthorized:
       description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -330,6 +316,20 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   securitySchemes:
     authToken:
       type: apiKey
