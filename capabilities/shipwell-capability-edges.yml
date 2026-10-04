@@ -1,0 +1,45 @@
+slug: shipwell
+provider: Shipwell
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Shipments
+  spec_file: shipwell-shipments-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.85
+  evidence: POST /shipments/  Create a shipment; PUT /shipments/tenders/{tenderId}/  Update a tendered
+    shipment; schemas Shipment, Stop, Address
+  reason: Creating, updating and tendering shipments with stops and addresses is core transport/logistics
+    execution.
+- tag: Carriers
+  spec_file: shipwell-carriers-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /shipments/{shipmentId}/carrier-assignments/  Create a new carrier assignment; GET /carriers/  List
+    carriers
+  reason: Assigning carriers to shipments in a TMS is transport execution. A supplier-management reading
+    is possible for the carrier roster, but the assignment operation anchors it to logistics operations.
+- tag: Events & Webhooks
+  spec_file: shipwell-events-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: GET /webhooks/  List webhook subscriptions; POST /webhooks/  Create a webhook subscription;
+    GET /events/event-names-by-version/
+  reason: Outbound event subscription lifecycle exposed to API consumers matches webhook and event subscription
+    management; it is integration plumbing, but the frame names this capability explicitly.

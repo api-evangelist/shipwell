@@ -218,6 +218,9 @@ apis:
   - type: APIReference
     url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
 common:
+- type: CapabilityMap
+  url: capabilities/shipwell-capability-edges.yml
+  name: Shipwell Business Capability Map
 - type: AgenticAccess
   url: agentic-access/shipwell-agentic-access.yml
 - type: DomainSecurity
