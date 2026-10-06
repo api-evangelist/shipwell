@@ -50,7 +50,7 @@ tags:
 - Shipping
 - Supply Chain
 created: '2026-07-05'
-modified: '2026-07-05'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: shipwell:shipwell-carriers-api
@@ -218,6 +218,8 @@ apis:
   - type: APIReference
     url: https://docs.shipwell.com/openapi_pages/events-and-webhooks/overview/
 common:
+- url: https://www.shipwell.com/blog/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/shipwell-capability-edges.yml
   name: Shipwell Business Capability Map
