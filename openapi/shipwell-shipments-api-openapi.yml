@@ -188,39 +188,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Stop:
-      type: object
-      properties:
-        ordinal_index:
-          type: integer
-        is_pickup:
-          type: boolean
-        is_dropoff:
-          type: boolean
-        planned_date:
-          type: string
-          format: date
-        planned_time_window_start:
-          type: string
-        planned_time_window_end:
-          type: string
-        location:
-          type: object
-          properties:
-            location_name:
-              type: string
-            address:
-              $ref: '#/components/schemas/Address'
-    ShipmentNote:
-      type: object
-      properties:
-        id:
-          type: string
-        message:
-          type: string
-        additional_data:
-          type: object
-          additionalProperties: true
     ShipmentList:
       type: object
       properties:
@@ -232,17 +199,6 @@ components:
           type: integer
         total_count:
           type: integer
-    LineItem:
-      type: object
-      properties:
-        description:
-          type: string
-        total_packages:
-          type: string
-        package_weight:
-          type: string
-        weight_unit:
-          type: string
     ShipmentInput:
       type: object
       required:
@@ -269,6 +225,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItem'
+    Shipment:
+      allOf:
+      - $ref: '#/components/schemas/ShipmentInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          reference_id:
+            type: string
+          state:
+            type: string
+    Stop:
+      type: object
+      properties:
+        ordinal_index:
+          type: integer
+        is_pickup:
+          type: boolean
+        is_dropoff:
+          type: boolean
+        planned_date:
+          type: string
+          format: date
+        planned_time_window_start:
+          type: string
+        planned_time_window_end:
+          type: string
+        location:
+          type: object
+          properties:
+            location_name:
+              type: string
+            address:
+              $ref: '#/components/schemas/Address'
+    LineItem:
+      type: object
+      properties:
+        description:
+          type: string
+        total_packages:
+          type: string
+        package_weight:
+          type: string
+        weight_unit:
+          type: string
+    ShipmentNote:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+        additional_data:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error_description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
     Address:
       type: object
       properties:
@@ -282,28 +303,21 @@ components:
           type: string
         country:
           type: string
-    Error:
-      type: object
-      properties:
-        error_description:
-          type: string
-        errors:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-    Shipment:
-      allOf:
-      - $ref: '#/components/schemas/ShipmentInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          reference_id:
-            type: string
-          state:
-            type: string
+  parameters:
+    ShipmentId:
+      name: shipmentId
+      in: path
+      required: true
+      description: The ID of the shipment.
+      schema:
+        type: string
   responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid API key.
       content:
@@ -316,20 +330,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    ShipmentId:
-      name: shipmentId
-      in: path
-      required: true
-      description: The ID of the shipment.
-      schema:
-        type: string
   securitySchemes:
     authToken:
       type: apiKey

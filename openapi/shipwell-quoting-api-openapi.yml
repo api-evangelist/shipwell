@@ -70,6 +70,26 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Quote:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              carrier:
+                type: string
+              total:
+                type: number
+              currency:
+                type: string
+              transit_days:
+                type: integer
     QuoteRequest:
       type: object
       properties:
@@ -94,29 +114,9 @@ components:
           items:
             type: object
             additionalProperties: true
-    Quote:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        rates:
-          type: array
-          items:
-            type: object
-            properties:
-              carrier:
-                type: string
-              total:
-                type: number
-              currency:
-                type: string
-              transit_days:
-                type: integer
   responses:
-    ValidationError:
-      description: The request payload failed validation.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -127,8 +127,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:
