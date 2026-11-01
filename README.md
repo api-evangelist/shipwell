@@ -1,4 +1,4 @@
-# Shipwell (shipwell)
+# Shipwell
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,61 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Shipwell is an AI-powered transportation management system (TMS) and freight execution platform for shippers, brokers, and carriers. The Shipwell v2 Core API lets developers plan, rate, tender, book, track, and settle multimodal freight - parcel, LTL, truckload, intermodal, rail, and ocean - programmatically, covering shipments, quoting and rating, carrier management, purchase orders and orders, documents, tenders, freight pay and audit, and a real-time events and webhooks surface.
+Shipwell is an AI-powered transportation management system (TMS) and freight execution platform for shippers, brokers, and carriers. The Shipwell v2 Core API lets developers plan, rate, tender, book, track, and settle multimodal freight - parcel, LTL, truckload, intermodal, rail, and ocean - programmatically. It covers shipments, quoting and rating, carrier management, purchase orders and orders, documents, tenders, freight pay and audit, and a real-time events and webhooks surface. The production base URL is https://api.shipwell.com/v2 (the newer Orders API is served under https://api.shipwell.com without the /v2 prefix), with a fully separate sandbox at https://sandbox-api.shipwell.com/v2. Requests are authenticated with company-scoped API keys passed in the Authorization header. Access to the full platform and API is enterprise and contract-gated.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shipwell/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shipwell/refs/heads/main/apis.yml)
+**Areas:** Transportation Management · TMS · Freight · Logistics · Shipping · Supply Chain
 
-## Access Model (be honest)
+## Shipwell on APIs.io
 
-Shipwell is a proprietary, enterprise SaaS platform. The developer documentation is public at [docs.shipwell.com](https://docs.shipwell.com/), but the full platform and API are **contract- and access-gated**:
+Everything profiled for Shipwell is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shipwell/](https://apis.io/providers/shipwell/)** — or go straight to one of the APIs or properties below.
 
-- **Sales-led onboarding.** There is no public self-serve signup or public pricing; you request a demo and are quoted based on freight volume, modules, and integrations.
-- **Company-scoped API keys.** Requests are authenticated with an API key passed in the `Authorization` header (the docs call this the AuthToken scheme). Keys can be permission-restricted.
-- **Separate environments.** Production (`https://api.shipwell.com/v2`) and sandbox (`https://sandbox-api.shipwell.com/v2`) are fully separate; objects in one cannot be manipulated from the other. In sandbox, third-party integrations return mocked responses.
-- **Mixed base paths.** Most of the Core API is under `/v2`, but the newer **Orders API is served under the host root without the `/v2` prefix** (for example `https://api.shipwell.com/orders`).
+### APIs (5)
 
-Because the full API reference and schemas assume an authenticated account, this catalog entry mixes **confirmed** endpoints (documented publicly) with **honestly-modeled** endpoints (inferred from the documented resource groups). Modeled endpoints are flagged in the OpenAPI (`(modeled)`) and in `review.yml` under `endpointsModeled` - verify them against the live reference before use.
+- [Shipwell Carriers API](https://apis.io/apis/shipwell/shipwell-carriers-api/) — Carriers, carrier relationships, and carrier assignments. (partly confirmed)
+- [Shipwell Orders API](https://apis.io/apis/shipwell/shipwell-orders-api/) — Orders and purchase orders consolidated onto shipments. (modeled)
+- [Shipwell Quoting API](https://apis.io/apis/shipwell/shipwell-quoting-api/) — Rates, quotes, RFQs, spot negotiations, and carrier bids. (modeled)
+- [Shipwell Shipments API](https://apis.io/apis/shipwell/shipwell-shipments-api/) — Multimodal freight shipments - the central platform resource. (confirmed)
+- [Shipwell Events & Webhooks API](https://apis.io/apis/shipwell/shipwell-events-webhooks-api/) — Real-time supply-chain events and webhook subscriptions. (partly confirmed)
 
-## APIs
+### Published properties
 
-Five logical APIs are cataloged:
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Shipwell Shipments API** — create, list, retrieve, and update multimodal shipments with stops, line items, equipment, service levels, notes, and carrier assignments. (endpoints confirmed)
-- **Shipwell Quoting and Rating API** — request rates/quotes (RFQs), run spot negotiations and carrier bids. (endpoints modeled)
-- **Shipwell Carriers API** — list and manage carriers, carrier relationships, tags, and assignments. (partly confirmed)
-- **Shipwell Orders API** — create and manage orders and purchase orders and consolidate them onto shipments; served under the host root without `/v2`. (endpoints modeled)
-- **Shipwell Events and Webhooks API** — retrieve real-time events (shipment tracking timeline updates) and register webhook subscriptions delivered by HTTP POST. (partly confirmed)
+#### Agentic access (1)
 
-## Real-Time / WebSocket
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Shipwell does **not** expose a documented public WebSocket API. Real-time supply-chain updates (shipment tracking events such as `in_transit` and `delivered`) are delivered through the **Events and Webhooks API** as server-initiated HTTP POST callbacks to a subscriber endpoint - not a WebSocket or SSE stream. See `review.yml` for the full assessment.
+- [Shipwell Agentic Access](https://apis.io/agentic-access/shipwell/shipwell-agentic-access/)
 
-## Tags
+#### Collections (6)
 
-- Transportation Management
-- TMS
-- Freight
-- Logistics
-- Shipping
-- Supply Chain
+Postman and Open Collection request collections.
 
-## Timestamps
+- [Shipwell v2 Core API](https://apis.io/collections/shipwell/open-shipwell/)
+- [Shipwell v2 Core Carriers API](https://apis.io/collections/shipwell/open-shipwell-carriers-api/)
+- [Shipwell v2 Core Carriers Events and Webhooks API](https://apis.io/collections/shipwell/open-shipwell-events-and-webhooks-api/)
+- [Shipwell v2 Core Carriers Orders API](https://apis.io/collections/shipwell/open-shipwell-orders-api/)
+- [Shipwell v2 Core Carriers Quoting API](https://apis.io/collections/shipwell/open-shipwell-quoting-api/)
+- [Shipwell v2 Core Carriers Shipments API](https://apis.io/collections/shipwell/open-shipwell-shipments-api/)
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+#### Security (2)
 
-## Common Properties
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shipwell Authentication](https://apis.io/security/shipwell/shipwell-authentication/)
+- [Shipwell Domain Security](https://apis.io/security/shipwell/shipwell-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shipwell Plans Pricing](https://apis.io/plans/shipwell/shipwell-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shipwell Rate Limits](https://apis.io/rate-limits/shipwell/shipwell-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Shipwell Finops](https://apis.io/finops/shipwell/shipwell-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.shipwell.com/)
-- [LinkedIn](https://www.linkedin.com/company/shipwell)
 - [Documentation](https://docs.shipwell.com/)
-- [Request a Demo](https://www.shipwell.com/request-a-demo)
-- [Plans](plans/shipwell-plans-pricing.yml)
-- [Rate Limits](rate-limits/shipwell-rate-limits.yml)
-- [Fin Ops](finops/shipwell-finops.yml)
+- [Sign up](https://www.shipwell.com/request-a-demo)
 - [Blog](https://www.shipwell.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 19.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 20.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shipwell/](https://apis.io/providers/shipwell/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shipwell: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shipwell/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
